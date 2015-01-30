@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block Title %}
+<div>{{title}}</div>
+{% endblock %}
+
+{% block content %}
+{% for route in routes %}
+    <div onclick="location.href='/route/{{ route.route_name }}/{{route.city}}'" id={{route.city}} class="alert" > 
+    <h5>{{route.route_name}} {{route.route_type}}: {{route.city}} </h5>
+    	<p>there is a {{route.alert.effect|default:"clear run"}} as of {{route.updateTime|default:"never"}} </p>
+    		{% if route.alert %}
+
+            <nav >
+    		<h5> Details: </h5>
+    		<p>{{route.alert.description|default:"there is no description"}} </p>
+    		<h5>More Info: </h5>
+
+             <p>{{route.alert.moreInfo|default:"there is no url for more info"}} </p>
+            </nav>
+    		{% endif %}
+    </div>
+{% endfor %}
+{% endblock %}

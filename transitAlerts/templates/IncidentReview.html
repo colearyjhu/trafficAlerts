@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block Title %}
+<div>{{title}}</div>
+{% endblock %}
+
+{% block content %}
+<div  id="DC" class="alert" > 
+    {% for warning in incident.relevant %} 
+<h5>{{warning}} </h5>
+    {% endfor %}
+
+{% endblock %}

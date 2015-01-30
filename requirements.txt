@@ -1,0 +1,16 @@
+Django==1.4.3 
+beautifulsoup4==4.3.2
+django-crontab==0.4.3
+mongoengine==0.7.9
+sendgrid==0.1.4
+twilio==3.6.4
+python-geohash==0.3
+django-mongorunner==0.1
+unittest2==0.5.1
+wsgiref==0.1.2
+zope.interface==3.6.1
+twython==3.1.2
+requests==2.1.0
+geoip2==0.5.1
+pytz
+geopy

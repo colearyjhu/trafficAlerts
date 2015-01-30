@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<head>
+   
+   {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" /> 
+    <title>Commute Alert Updates</title>
+</head>
+
+<body>
+    <div id="title">
+        {% block Title %}{% endblock %}
+    </div>
+    <div id="leftsidebar">
+        {% block sidebar %}
+        <ol>
+          <!-- <li id="category">
+                Cities
+                </li>
+            <ul>
+                <li onclick="location.href='/city/Boston'">Show Boston Routes</li>
+                <li onclick="location.href='/city/Chicago'">Show Chicago Routes</li>
+                <li onclick="location.href='/city/DC'">Show DC Routes</li>
+            </ul>
+            <li id="category">
+                Utlities
+                </li>
+            <ul>
+                <li onclick="location.href='/update/'">Update The Routes</li>
+                <li onclick="location.href='/clear/'">Clear Alerts for the Routes</li>
+            </ul> -->
+             <li id="category">
+                Alerts
+                </li>
+            <ul> 
+                <li onclick="location.href='/alerts/'">All Alerts</li>
+                <li onclick="location.href='/alerts/Boston'">Boston Alerts</li>
+                <li onclick="location.href='/alerts/Chicago'">Chicago Alerts</li>
+                <li onclick="location.href='/alerts/DC'">DC Alerts</li>
+                 <li onclick="location.href='/alerts/San Franciso'">San Franciso Alerts</li>
+                  <li onclick="location.href='/alerts/Philadelphia'">Philly Alerts</li>
+                  <li onclick="location.href='/alerts/New York'">New York Alerts</li>
+            </ul>
+            </ul>
+             <li id="category">
+                Routes
+            </li>
+            <ul>
+                <li onclick="location.href='/route/red line'">Red Line</li>
+                <li onclick="location.href='/route/blue line'">Blue Line</li>
+
+            </ul>
+              <li id="category">
+                Car Traffic
+            </li>
+            <ul>
+                <li onclick="location.href='/cars'">All Routes</li>
+                <li onclick="location.href='/cars/14 whitlaw close chappaqua/new york/yes'"> My House to NYC</li>
+                <li onclick="location.href='/cars/Boston/Chicago/yes'">Boston to Chicago</li>
+
+            </ul>
+
+
+        </ol>
+        {% endblock %}
+    </div>
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+    <div id="rightsidebar">
+        <ol>
+          <!-- <li id="category">
+                Cities
+                </li>
+            <ul>
+                <li onclick="location.href='/city/Boston'">Show Boston Routes</li>
+                <li onclick="location.href='/city/Chicago'">Show Chicago Routes</li>
+                <li onclick="location.href='/city/DC'">Show DC Routes</li>
+            </ul>
+            <li id="category">
+                Utlities
+                </li>
+            <ul>
+                <li onclick="location.href='/update/'">Update The Routes</li>
+                <li onclick="location.href='/clear/'">Clear Alerts for the Routes</li>
+            </ul> -->
+             <li id="category">
+                Controls
+                </li>
+            <ul> 
+                <li onclick="location.href='/build/'">Build All Routes</li>
+                <li onclick="location.href='/update'">Update All Alerts</li>
+            </ul>
+
+
+        </ol>
+    </div>
+</body>
+</html>

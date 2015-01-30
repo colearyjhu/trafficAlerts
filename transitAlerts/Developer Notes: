@@ -1,0 +1,48 @@
+Developer Notes:
+
+
+Introduction:
+
+the transitAlerts App part of Django, has two functions: 
+1. it provides the model, update functionality, and views for public transit routes. the Model for this is RouteDoc and can be found in models.py. All of the updating functions can be found in cityUpdatesAndBuildFuncs.py. In there is a function to build routes from all listed GTFS files (Genereal transit file system, a common form of information documentation for public transport authorities) and also functions to add alerts to each of those cities are held there. More on these below
+
+2. There is functionality built in for Car Routes to be added. This is mostly housed in carTraffic.py and in the model carDoc. This functionality will not be covered at this time.
+
+
+The logical flow of using this applicaiton is:
+Build Routes from GTFS Docs->update them to get the alerts-> use the routes and the alerts for what you like
+
+
+Route Building:
+
+
+Currently building route files is done by calling buildDocs from cityUpdatesAndBuildFuncs. Which itself, uses the constant GTFSfile(at the top of cityUpdateAndBuildFuncs) to find the file path for all aviable cities. GTFSfile is a dict formatted like this {city:FilePath city:FilePath etc.}  which gives a path to a route.txt file. For every route in this file a RouteDoc is created(or updated if it already exists)
+
+this is currently callable with url^/build
+
+
+UPDATING GTFS FILES:
+currently, all GTFS files can be updated(to their most current GTFS versions) with ./updateGTFS except for SEPTA. SEPTA can be downloaded here: http://www2.septa.org/developer/. you then need to unzip each one of the files rename it SEPTA_GTFS, and concatenate the routes.txt files from both buses and trains into the top directory. that is there should be only 1 routes.txt in SEPTA_GTFS. If you want test cases to work you'll have to delete one of the headers in the bus or train routes.txt file(since test cases make sure that the number of lines minus a header of 1 routes are created)
+
+
+ADDING ALERTS:
+to add alerts call the cron.py function update alerts function. This currently runs on a cron job to update every 15 minutes, and can be called using url^/update.
+for all the citys in cityUpdate there is a function(the ten or so you see in cityUpdatesAndBuildFuncs) which adds alerts to their respective routes, given the corresponding url for the alert feed in alertUrl(at the top of cityUpdatesAndBuildFuncs) these methods are all custom parsers which allow alerts to be uniform within the database. /update also currently gives you a nice print out of all the alerts added.
+
+other urls:
+
+/city/"a city name"-gives you all the routes for the city
+/alerts/"a city name"-gives you all the alerts for a city
+/clear clears all the alerts
+route/"a route name"-gives you all the routes with that route name
+
+Known Bugs/Complaints:
+SEPTA isn't fantastic at route mathcing right now.
+There are some genereal alerts for whole cities such as reroutes for Chicago Cubs games and Boston Red Sox games that are ignored at this time.(though they are printed out in the logger)
+S train might also have matching issues due to GS(grand central shuttle) vs S train in...Brooklyn? not entirely sure but is something to look into
+
+
+Tests:
+the only currently importnat tests are:
+test_build_and_update(self): which makes sure a build and update instantiates properly
+test_alert_exists(self): which tests that all alets in alertsExpected.txt a file you edit putting a city a comma and then a route name, have an alert

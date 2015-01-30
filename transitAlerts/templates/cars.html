@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block Title %}
+<div>{{title}}</div>
+{% endblock %}
+
+{% block content %}
+{% for route in routes %}
+    <div onclick="location.href='{{ route.url }}'" id="DC" class="alert" > 
+    <h5>{{route.start}} to {{route.end}}: Commuter District: {{route.commuterCity}} </h5>
+    {% if route.inbetween %}
+    {% for place in route.inbetween %}
+    <h5> via {{place}} </h5>
+    {% endfor %}
+    {% endif %}
+    {% if showMap%}
+    <img src="{{route.imageUrl}}"/>
+    {% endif %}
+    	<p>there are {{route.delayTime|default:"0"}} minutes of delays as of {{route.updateTime|default:"never"}} </p>
+    		{% if route.json %}
+            <nav >
+    		<h5> Expected Travel Time: </h5>
+    		<p>{{route.expectedTravelTime|default:"Something's Wrong"}} minutes </p>
+    		<h5>Geo Code: </h5>
+                {% for warning in route.warnings %}
+                 <p>{{warning}} </p>
+                 {% endfor %}
+            <h5> Individual Update: </h5>
+                {% for warning in route.warningsFromIndividual %}
+                 <p>{{warning}} </p>
+                 {% endfor %}
+            </nav>
+    		{% endif %}
+    </div>
+{% endfor %}
+  
+{% endblock %}
