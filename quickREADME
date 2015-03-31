@@ -1,6 +1,0 @@
-please run updateGTFS.sh in the transit Alerts folder!
-
-also a mongod server must be running and all requiremnts installed, a virtual enviroment is suggested.
-
-use build routes from the homepage to build the routes and update to get all the alerts for them!
-
